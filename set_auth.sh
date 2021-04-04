@@ -14,9 +14,9 @@
 # limitations under the License.
 
 if [ "$#" -ne 4 ]; then
-    echo "Usage: ./setup_auth.sh service-account-name zone cluster namespace"
+    echo "Usage: ./set_auth.sh service-account-name zone cluster namespace"
     echo "     Get these values by visiting https://console.cloud.google.com/ai-platform/pipelines/clusters"
-    echo "  eg:  ./setup_auth.sh kfpdemo us-central1-a cluster-1 default"
+    echo "  eg:  ./set_auth.sh kfpdemo europe-north1-c cluster-1 default"
     exit
 fi
 
