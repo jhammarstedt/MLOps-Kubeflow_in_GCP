@@ -1,5 +1,5 @@
 #!/bin/bash -e
-
+chmod +x setup_trigger.sh
 # Continuous integration: recreate image anytime any file
 # in the directory that this script is run from is commited into GitHub
 # Run this only once per directory
