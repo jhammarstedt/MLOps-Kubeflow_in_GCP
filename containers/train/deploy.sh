@@ -7,7 +7,7 @@ MODEL_VERSION=1
 MODEL_DIR= "projects/ml-pipeline-309409/models/"
 #create new model
 # Get the name from 
-modelname= $(gcloud ai-platform models list | grep -w "$MODEL_NAME") #might give me trouble
+modelname= $(gcloud ai-platform models list --region global| grep -w "$MODEL_NAME") #might give me trouble
 echo $modelname
 
 #check if the string is empty, if so we create a new model
