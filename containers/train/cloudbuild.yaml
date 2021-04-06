@@ -1,8 +1,7 @@
 #Documentation for this can be found at https://cloud.google.com/build/docs/building/build-containers
 
 steps:
-        - name: 'gcr.io/cloud-builders/docker'
-        #dir - skips for now, use when we have auto
+      - name: 'gcr.io/cloud-builders/docker'  #dir - skips for now, use when we have auto
         #Use cloudbuild to build and use -t to exit after running this command
         #path is gcr.io/PROJECT_ID/IMAGE_NAME
         args: ['build','-t','gcr.io/ml-pipeline-309409/demo1-aiplatform:latest','.']

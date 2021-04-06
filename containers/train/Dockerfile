@@ -5,7 +5,7 @@ FROM google/cloud-sdk:latest
 RUN mkdir -p /demo1/src && cd /demo1/src && git clone https://github.com/jhammarstedt/gcloud_MLOPS_demo.git
 
 #Copy the deploy script from /containers/$current_container 
-COPY deploy.sh
+COPY deploy.sh ./
 
 #using bash we run the deploy script we just copied in here
 ENTRYPOINT ["bash","./deploy.sh"]
