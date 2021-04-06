@@ -7,7 +7,7 @@ MODEL_VERSION=1
 MODEL_DIR= "projects/ml-pipeline-309409/models/"
 #create new model
 echo "Setting region to global"
-gcloud config set compute/region global
+#gcloud config set compute/region global
 # Get the name from 
 modelname= $(gcloud ai-platform models list --region global| grep -w "$MODEL_NAME") #might give me trouble
 echo $modelname
