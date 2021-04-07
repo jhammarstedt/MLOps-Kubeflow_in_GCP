@@ -41,3 +41,13 @@ kubectl create secret generic user-gcp-sa \
   
 # remove private key file
 rm application_default_credentials.json
+
+#Create a txt file with some info about the project to be used as reference
+cat <<EOM > project_info.txt
+PROJECT_ID=$PROJECT_ID
+SA_NAME=$SA_NAME
+SA_ADRESS="$SA_NAME@ai-analytics-solutions.iam.gserviceaccount.com"
+ZONE=$ZONE
+CLUSTER=$CLUSTER
+NAMESPACE=default
+EOM
