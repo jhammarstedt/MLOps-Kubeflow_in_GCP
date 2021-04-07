@@ -12,7 +12,7 @@ PROJECT_ID=$(gcloud config config-helper --format "value(configuration.propertie
 SA_NAME=$1 
 ZONE=$2
 CLUSTER=$3
-NAMESPACE= "default"
+NAMESPACE="default"
 
 
 
