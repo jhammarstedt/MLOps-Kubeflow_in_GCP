@@ -1,11 +1,16 @@
 #!bin/bash -e
-dir:  'courses/machine_learning/deepdive/06_structured/pipelines/containers/deploycmle'   # remove-for-manual
 
 CONTAINER_NAME= ml-demo-$(basename $(pwd)) #gets the last folder which is our name
 PROJECT_ID= $(gcloud config config-helper --format "value(configuration.properties.core.project)")
 
 echo "Creating ${CONTAINER_NAME}:latest from Dockerfile:"
-cat /${CONTAINER_NAME}/Dockerfile
+cat ${CONTAINER_NAME}/Dockerfile
+
+#check if the cloudbuild file already exists
+#if [-f cloudbuild.yaml];
+#      echo "Cloudbuild existed, removing and creating a new"
+#      rm cloudbuild.yaml
+#fi
 
 #So in each dir we will create a cloudbuild file that tells Cloud Build to run the Dockerfile
 cat <<EOM> cloudbuild.yaml
