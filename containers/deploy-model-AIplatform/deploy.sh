@@ -1,10 +1,11 @@
 #!/bin/bash
-TFVERSION=1.8
-REGION="europe-west1"
+TFVERSION=1.8 #specify later
+REGION=europe-west1
 
+PROJECT_ID=$(gcloud config config-helper --format "value(configuration.properties.core.project)")
 MODEL_NAME="test_model1"
 MODEL_VERSION=1
-MODEL_DIR= "projects/ml-pipeline-309409/models/"
+MODEL_DIR= "projects/${PROJECT_ID}/models/"
 #create new model
 echo "Setting region to global"
 #gcloud config set compute/region global
