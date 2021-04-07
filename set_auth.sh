@@ -3,7 +3,6 @@
 
 if [ "$#" -ne 3 ]; then
     echo "Usage: ./set_auth.sh service-account-name zone cluster namespace"
-    echo " 
     echo "     Create a new name and get the other values at https://console.cloud.google.com/ai-platform/pipelines/clusters"
     echo "  eg:  ./set_auth.sh ml-demo europe-north1-c cluster-1 default"
     exit
