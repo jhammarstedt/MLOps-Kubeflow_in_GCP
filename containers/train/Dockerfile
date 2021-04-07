@@ -8,4 +8,4 @@ RUN mkdir -p /demo1/src && cd /demo1/src && git clone https://github.com/jhammar
 COPY deploy.sh ./
 
 #using bash we run the deploy script we just copied in here
-ENTRYPOINT ["bash","gcloud config set compute/region global","./deploy.sh"]
+ENTRYPOINT ["bash","./deploy.sh"]
