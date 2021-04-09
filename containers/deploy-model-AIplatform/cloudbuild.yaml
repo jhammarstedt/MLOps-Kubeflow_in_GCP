@@ -7,4 +7,4 @@ steps:
         args: ['build','-t','gcr.io/ml-pipeline-309409/deploytoai:latest','.']
         
         #Create and store an image in the container registry
-images: ['gcr.io/ml-pipeline-309409/deployToAI:latest']
+images: ['gcr.io/ml-pipeline-309409/deploytoai:latest']
