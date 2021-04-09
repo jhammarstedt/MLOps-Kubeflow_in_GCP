@@ -4,7 +4,7 @@ CONTAINER_NAME=ml-demo-$(basename $(pwd)) #gets the last folder which is our nam
 PROJECT_ID=$(gcloud config config-helper --format "value(configuration.properties.core.project)")
 
 echo "Creating ${CONTAINER_NAME}:latest from Dockerfile:"
-cat ${CONTAINER_NAME}/Dockerfile
+cat Dockerfile
 
 #check if the cloudbuild file already exists
 #if [-f cloudbuild.yaml];
