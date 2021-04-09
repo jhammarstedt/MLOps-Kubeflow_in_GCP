@@ -1,7 +1,7 @@
 #!bin/bash -e
 echo "Current dir $(pwd) "
-CONTAINER_NAME= "ml-demo-$(basename $(pwd))" #gets the last folder which is our name
-PROJECT_ID= "$(gcloud config config-helper --format "value(configuration.properties.core.project)")"
+CONTAINER_NAME= ml-demo-$(basename $(pwd) ) #gets the last folder which is our name
+PROJECT_ID= $(gcloud config config-helper --format "value(configuration.properties.core.project)")
 
 echo "Creating ${CONTAINER_NAME}:latest from Dockerfile:"
 cat ${CONTAINER_NAME}/Dockerfile
