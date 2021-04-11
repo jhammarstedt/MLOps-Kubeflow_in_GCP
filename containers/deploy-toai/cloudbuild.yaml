@@ -1,10 +1,10 @@
 #Documentation for this can be found at https://cloud.google.com/build/docs/building/build-containers
-
+# Note (this file is built in the bash script and will not actively be used by the container.
+# Serve as reference
 steps:
       - name: 'gcr.io/cloud-builders/docker'  #dir - skips for now, use when we have auto
         #Use cloudbuild to build and use -t to exit after running this command
         #path is gcr.io/PROJECT_ID/IMAGE_NAME
-        args: ['build','-t','gcr.io/ml-pipeline-309409/deploytoai:latest','.']
-        
+        args: ['build','-t','gcr.io/ml-pipeline-309409/ml-demo-deploy-toai:latest','.']
         #Create and store an image in the container registry
 images: ['gcr.io/ml-pipeline-309409/deploytoai:latest']
