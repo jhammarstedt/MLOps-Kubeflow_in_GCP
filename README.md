@@ -22,7 +22,7 @@ This demo was created as a part of an assignment for a DevOps course given at KT
 
 to run the container that deploys the model to AI platform I would run:
 
-`docker run -t gcr.io/ml-pipeline-309409/ml-demo-deploy-toai --project ml-pipeline-309409 --bucket ml-pipeline-309409_cloudbuild local`
+`docker run -t gcr.io/ml-pipeline-309409/ml-demo-deploy-toai `
 
 6. Create a pipeline in python using the kubeflow API
 7. Now we can either run the pipeline manually at the pipeline dashbord from 1. or run it as a script.
