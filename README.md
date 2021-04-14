@@ -36,8 +36,8 @@ e.g to run the container that deploys the model to AI platform I would run:
 CD can be necessary when we want to retrain/finetune the model give that we get new data, not every time we update a component. 
 So we will have a Cloud function that will trigger a training pipeline when we upload new data to the Cloud Storage (in AWS this would be a lambda connected to the S3 storage)
 
-### Initial Pipeline structure 
+### Planned Pipeline structure 
 1. Preproc
 2. Training
 3. Deploy to AI platform
-4. Serve predictions
+4. Serving
