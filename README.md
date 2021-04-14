@@ -1,5 +1,5 @@
 # Demo on MLOPS with google cloud (WIP)
-This repo will demonstrate how to set up and deploy an ML CI/CD pipeline using Google Clouds AI Platform, Kubeflow and Docker.
+This repo will demonstrate how to take the first step towards MLOps by setting up and deploying an ML CI/CD pipeline using Google Clouds AI Platform, Kubeflow and Docker.
 
 This demo was created as a part of an assignment for a DevOps course given at KTH spring 2021 and a video demo will also be added shortly.
 ## Members
