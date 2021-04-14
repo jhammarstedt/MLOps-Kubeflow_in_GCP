@@ -26,10 +26,10 @@ to run the container that deploys the model to AI platform I would run:
 
 6. Create a pipeline in python using the kubeflow API
 7. Now we can either run the pipeline manually at the pipeline dashbord from 1. or run it as a script.
-### CI
+### CI (To be added) ##
 8. To set up CI and rebuild at every PR:
   * Connect gcloud to github, either using setup_trigger.sh or in the [Trigger UI](https://console.cloud.google.com/cloud-build/triggers?project=ml-pipeline-309409&folder=&organizationId=)
   * This trigger will run everytime a PR happens and thus rebuild the affected Docker Image
-### CD (TBD)
+### CD (To be added) ##
 CD can be necessary when we want to retrain/finetune the model give that we get new data, not every time we update a component. 
 So we will have a Cloud function that will trigger a training pipeline when we upload new data to the Cloud Storage (in AWS this would be a lambda connected to the S3 storage)
