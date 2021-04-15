@@ -6,19 +6,19 @@ import mnist
 
 from google.cloud import storage
 
-credentials_dict = {
-    'type': 'service_account',
-    'client_id': os.environ['BACKUP_CLIENT_ID'],
-    'client_email': os.environ['BACKUP_CLIENT_EMAIL'],
-    'private_key_id': os.environ['BACKUP_PRIVATE_KEY_ID'],
-    'private_key': os.environ['BACKUP_PRIVATE_KEY'],
-}
+# credentials_dict = {
+#     'type': 'service_account',
+#     'client_id': os.environ['BACKUP_CLIENT_ID'],
+#     'client_email': os.environ['BACKUP_CLIENT_EMAIL'],
+#     'private_key_id': os.environ['BACKUP_PRIVATE_KEY_ID'],
+#     'private_key': os.environ['BACKUP_PRIVATE_KEY'],
+# }
 
 def preprocess(PROJECT, BUCKET):
     print("test preprocess")
     OUTPUT_DIR = 'gs://{0}/mnist/'.format(BUCKET)
 
-    storage_client = storage.Client(credentials=credentials_dict, project=PROJECT)
+    storage_client = storage.Client(project=PROJECT)
 
     bucket = storage_client.bucket(BUCKET)
     blob = bucket.blob('/mnist/')
@@ -42,4 +42,4 @@ if __name__ == '__main__':
 
   args = parser.parse_args()
 
-  preprocess(args.project, args.bucket, args.start_year)
+  preprocess(args.project, args.bucket)
