@@ -3,6 +3,8 @@ echo "Current dir $(pwd) "
 CONTAINER_NAME=ml-demo-$(basename $(pwd)) #gets the last folder which is our name
 PROJECT_ID=$(gcloud config config-helper --format "value(configuration.properties.core.project)")
 
+DIR_IN_REPO="/${1?Error: NO dirr given}" #passing it from build_containers  #$(pwd | sed 's%gcloud_MLOPS_demo/% %g' | awk '{print $2}')
+
 echo "Creating ${CONTAINER_NAME}:latest from Dockerfile:"
 cat Dockerfile
 
@@ -16,8 +18,9 @@ cat Dockerfile
 cat <<EOM> cloudbuild.yaml
 steps:
       - name: 'gcr.io/cloud-builders/docker'  
-        # dir: '/containers/$CONTAINER_NAME' #enable this when we run the github triggers
-        #Use cloudbuild to build and use -t to exit after running this command
+        dir: '${DIR_IN_REPO}' #Disable for manual but enable this when we run the github triggers
+        
+	#Use cloudbuild to build and use -t to exit after running this command
         #path is gcr.io/PROJECT_ID/IMAGE_NAME
         args: ['build','-t','gcr.io/${PROJECT_ID}/${CONTAINER_NAME}:latest','.']
         
