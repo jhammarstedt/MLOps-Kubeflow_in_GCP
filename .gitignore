@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+**/cloudbuild.yaml
+
+
 # C extensions
 *.so
 
