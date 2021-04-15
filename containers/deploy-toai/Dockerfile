@@ -2,10 +2,12 @@
 FROM google/cloud-sdk:latest
 
 #Create a subdirectory, enter it and clone our github repo to get the code for the trainer
-RUN mkdir -p /demo1/src && cd /demo1/src && git clone https://github.com/jhammarstedt/gcloud_MLOPS_demo.git
+RUN mkdir -p /demo1/src && cd /demo1/src && git clone https://github.com/jhammarstedt/gcloud_MLOPS_demo.git 
 
 #Copy the deploy script from /containers/$current_container 
-COPY deploy.sh ./
+COPY test.py ./
+
+RUN cat test.py
 
 #using bash we run the deploy script we just copied in here
-ENTRYPOINT ["bash","./deploy.sh"]
+ENTRYPOINT ["bash","./test.py"]

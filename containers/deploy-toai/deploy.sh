@@ -5,12 +5,12 @@ REGION=europe-west1
 PROJECT_ID=$(gcloud config config-helper --format "value(configuration.properties.core.project)")
 MODEL_NAME="test_model1"
 MODEL_VERSION=1
-MODEL_DIR= "projects/${PROJECT_ID}/models/"
+MODEL_DIR=$(gsutil ls gs://ml-pipeline-309409_cloudbuild/models)
 #create new model
 echo "Setting region to global"
 #gcloud config set compute/region global
 # Get the name from 
-modelname= $(gcloud ai-platform models list --region global| grep -w "$MODEL_NAME") #might give me trouble
+modelname=$(gcloud ai-platform models list --region global| grep -w "$MODEL_NAME") #might give me trouble
 echo $modelname
 
 #check if the string is empty, if so we create a new model

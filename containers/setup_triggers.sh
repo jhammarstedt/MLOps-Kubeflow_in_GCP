@@ -14,17 +14,17 @@ REPO_OWNER=jhammarstedt
 
 #Here a trigger is created
 create_github_trigger() {
-    DIR_IN_REPO=containers
-    #DIR_IN_REPO=$(pwd | sed "s%${REPO_NAME}/% %g" | awk '{print $2}')
-    gcloud beta builds triggers create github \
-      --build-config="${DIR_IN_REPO}/cloudbuild.yaml" \
-      --included-files="${DIR_IN_REPO}/**" \
-      --branch-pattern="^master$" \
-      --repo-name=${REPO_NAME} --repo-owner=${REPO_OWNER} 
+	DIR_IN_REPO=$(pwd)
+	echo "In $DIR_IN_REPO"
+    	#gcloud beta builds triggers create github \
+      	#--build-config="${DIR_IN_REPO}/cloudbuild.yaml" \
+      	#--included-files="${DIR_IN_REPO}/**" \
+      	#--branch-pattern="^master$" \
+      	#--repo-name=${REPO_NAME} --repo-owner=${REPO_OWNER} 
 }
 
-for container_dir in $(ls -d */ | sed 's%/%%g'); do
+for containers in */; do
     cd $container_dir
-    create_github_trigger
+    create_github_trigger 
     cd ..
 done
