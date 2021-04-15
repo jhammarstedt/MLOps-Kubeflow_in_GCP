@@ -18,11 +18,8 @@ create_github_trigger() {
 	DIR_IN_REPO=$(pwd | sed "s%${REPO_NAME}/% %g" | awk '{print $2}')
 
 	#Create a github trigger from gcloud
-	gcloud beta builds triggers create github \
-      		--build-config="${DIR_IN_REPO}/cloudbuild.yaml" \
-      		--included-files="${DIR_IN_REPO}/**" \ #Include all files in the current container, eg dockerfile,cloudbuild, python script
-      		--branch-pattern="^master$" \ #Will create a rebuild on PUSHES
-      		--repo-name=${REPO_NAME} --repo-owner=${REPO_OWNER} 
+	gcloud beta builds triggers create github --build-config="${DIR_IN_REPO}/cloudbuild.yaml" \
+      		--included-files="${DIR_IN_REPO}/**" --branch-pattern="^master$" --repo-name=${REPO_NAME} --repo-owner=${REPO_OWNER} 
 }
 
 for container in $(ls -d */| sed 's%/%%g');do
