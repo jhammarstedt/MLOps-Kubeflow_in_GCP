@@ -1,6 +1,6 @@
 #!/bin/bash -e
 # Continuous integration: recreate image anytime any file
-# in the directory that this script is run from is commited into GitHub
+# in the directory that this script is run from is commited into GitHub using Cloud Build triggers
 # Run this only once per directory
 # In order to try this out, fork this repo into your personal GitHub account
 # Then, change the repo-owner to be your GitHub id
@@ -14,17 +14,20 @@ REPO_OWNER=jhammarstedt
 
 #Here a trigger is created
 create_github_trigger() {
-	DIR_IN_REPO=$(pwd)
-	echo "In $DIR_IN_REPO"
-    	#gcloud beta builds triggers create github \
-      	#--build-config="${DIR_IN_REPO}/cloudbuild.yaml" \
-      	#--included-files="${DIR_IN_REPO}/**" \
-      	#--branch-pattern="^master$" \
-      	#--repo-name=${REPO_NAME} --repo-owner=${REPO_OWNER} 
+	
+	DIR_IN_REPO=$(pwd | sed "s%${REPO_NAME}/% %g" | awk '{print $2}')
+
+	#Create a github trigger from gcloud
+	gcloud beta builds triggers create github \
+      		--build-config="${DIR_IN_REPO}/cloudbuild.yaml" \
+      		--included-files="${DIR_IN_REPO}/**" \ #Include all files in the current container, eg dockerfile,cloudbuild, python script
+      		--branch-pattern="^master$" \ #Will create a rebuild on PUSHES
+      		--repo-name=${REPO_NAME} --repo-owner=${REPO_OWNER} 
 }
 
-for containers in */; do
-    cd $container_dir
-    create_github_trigger 
+for container in $(ls -d */| sed 's%/%%g');do
+    cd $container
+    echo "Container $container"
+    create_github_trigger  
     cd ..
 done
