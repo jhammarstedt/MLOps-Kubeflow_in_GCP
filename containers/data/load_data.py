@@ -23,7 +23,8 @@ def preprocess(PROJECT, BUCKET):
     buckets = storage_client.list_buckets()
     # blob = bucket.blob('/mnist/')
 
-    print(buckets)
+    for bucket in buckets:
+        print(bucket)
 
 if __name__ == '__main__':
   logging.getLogger().setLevel(logging.INFO)
