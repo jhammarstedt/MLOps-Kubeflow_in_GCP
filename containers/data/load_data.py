@@ -20,10 +20,10 @@ def preprocess(PROJECT, BUCKET):
 
     storage_client = storage.Client(project=PROJECT)
 
-    bucket = storage_client.bucket(BUCKET)
-    blob = bucket.blob('/mnist/')
+    buckets = storage_client.list_buckets()
+    # blob = bucket.blob('/mnist/')
 
-
+    print(buckets)
 
 if __name__ == '__main__':
   logging.getLogger().setLevel(logging.INFO)
