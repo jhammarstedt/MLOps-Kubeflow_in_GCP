@@ -18,7 +18,7 @@ cat Dockerfile
 cat <<EOM> cloudbuild.yaml
 steps:
       - name: 'gcr.io/cloud-builders/docker'  
-        dir:'containers/${DIR_IN_REPO}' # remove-for-manual
+        dir: 'containers/${DIR_IN_REPO}' # remove-for-manual
         #Use cloudbuild to build and use -t to exit after running this command
         #path is gcr.io/PROJECT_ID/IMAGE_NAME
         args: ['build','-t','gcr.io/${PROJECT_ID}/${CONTAINER_NAME}:latest','.']
