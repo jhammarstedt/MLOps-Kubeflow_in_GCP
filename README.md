@@ -31,7 +31,8 @@ e.g to run the container that deploys the model to AI platform I would run:
 ### CI (To be added) ##
 8. To set up CI and rebuild at every PR:
   * Connect gcloud to github, either using setup_trigger.sh or in the [Trigger UI](https://console.cloud.google.com/cloud-build/triggers?project=ml-pipeline-309409&folder=&organizationId=)
-  * This trigger will run everytime a PR happens and thus rebuild the affected Docker Image
+  * Push the newly created cloudbuilds from GCP into the origin otherwise the trigger won't find them
+  * This trigger will run everytime a push to master happens in any of the containers and thus rebuild the affected Docker Image
 ### CD (To be added) ##
 CD can be necessary when we want to retrain/finetune the model give that we get new data, not every time we update a component. 
 So we will have a Cloud function that will trigger a training pipeline when we upload new data to the Cloud Storage (in AWS this would be a lambda connected to the S3 storage)
