@@ -20,11 +20,14 @@ def preprocess(PROJECT, BUCKET):
 
     storage_client = storage.Client(project=PROJECT)
 
-    buckets = storage_client.list_buckets()
-    # blob = bucket.blob('/mnist/')
+    bucket = storage_client.bucket('mnist')
+    new_bucket = storage_client.create_bucket(bucket)
+    print(
+        "Created bucket {} in {} with storage class {}".format(
+            new_bucket.name, new_bucket.location, new_bucket.storage_class
+        )
+    )
 
-    for bucket in buckets:
-        print(bucket)
 
 if __name__ == '__main__':
   logging.getLogger().setLevel(logging.INFO)
