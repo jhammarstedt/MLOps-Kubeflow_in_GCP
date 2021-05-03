@@ -3,6 +3,7 @@ import datetime
 import logging
 import os
 import mnist
+import pandas as pd
 
 from google.cloud import storage
 
@@ -22,7 +23,8 @@ def preprocess(PROJECT, BUCKET):
 
     buckets = storage_client.list_buckets()
     # blob = bucket.blob('/mnist/')
-
+    data = pd.read_csv("gs://ml-pipeline-309409_bucket/data/iris.data",delimiter=',')
+    print(data.head())
     print(buckets)
 
 if __name__ == '__main__':
