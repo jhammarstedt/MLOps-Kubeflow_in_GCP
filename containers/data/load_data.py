@@ -16,7 +16,7 @@ from google.cloud import storage
 
 def preprocess(PROJECT, BUCKET):
     print("test preprocess")
-    OUTPUT_DIR = 'gs://{0}/mnist/'.format(BUCKET)
+    OUTPUT_DIR = 'gs://{0}/data/'.format(BUCKET)
 
     storage_client = storage.Client(project=PROJECT)
 
