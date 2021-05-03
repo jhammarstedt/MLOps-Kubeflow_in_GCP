@@ -4,6 +4,7 @@ import logging
 import os
 import mnist
 import pandas as pd
+from io import StringIO #to avoid creating temp csv file
 
 from google.cloud import storage
 
@@ -16,16 +17,28 @@ from google.cloud import storage
 # }
 
 def preprocess(PROJECT, BUCKET):
-    print("test preprocess")
     OUTPUT_DIR = 'gs://{0}/data/'.format(BUCKET)
 
     storage_client = storage.Client(project=PROJECT)
 
     buckets = storage_client.list_buckets()
     # blob = bucket.blob('/mnist/')
+    my_bucket = storage_client.get_bucket('ml-pipeline-309409_bucket')
+    
     data = pd.read_csv("gs://ml-pipeline-309409_bucket/data/iris.data",delimiter=',')
-    print(data.head())
     print(buckets)
+    
+    print('preprocessing data')
+    data['class'] = data['class'].str.lower()
+    print(data.head())
+
+    filename= 'iris_preproc.csv'
+    
+    data.to_csv(filename,index=False)
+    blob = my_bucket.blob(f'data/{filename}')
+    blob.upload_from_filename(filename,content_type='csv')
+    os.system("rm iris_preproc.csv")
+    
 
 if __name__ == '__main__':
   logging.getLogger().setLevel(logging.INFO)
