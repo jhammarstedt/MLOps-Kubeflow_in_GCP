@@ -17,8 +17,8 @@ def make_prediction(new_data):
     new_data = {
         'instances':
         {
-            'variable1': new_data[0]
-            'variable2': new_data[1]
+            'variable1': new_data[0],
+            'variable2': new_data[1],
             'variable3': new_data[2]
         }
     }
