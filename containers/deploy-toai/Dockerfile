@@ -6,6 +6,7 @@ RUN mkdir -p /demo1/src && cd /demo1/src && git clone https://github.com/jhammar
 
 #Copy the deploy script from /containers/$current_container 
 COPY test.py ./
+COPY deploy.sh ./
 COPY predict.py ./
 
 RUN cat test.py
