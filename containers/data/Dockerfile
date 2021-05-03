@@ -2,7 +2,7 @@ FROM python:3.8
 
 RUN git clone https://github.com/jhammarstedt/gcloud_MLOPS_demo.git 
 
-COPY . .
+COPY gcloud_MLOPS_demo/data/* .
 
 RUN pip install -r requirements.txt
 ARG project_id='ml-pipeline-309409'
