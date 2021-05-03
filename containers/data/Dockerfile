@@ -1,9 +1,9 @@
 FROM python:3.8
 
 RUN git clone https://github.com/jhammarstedt/gcloud_MLOPS_demo.git 
-
-COPY gcloud_MLOPS_demo/containers/data/load_data.py .
-COPY gcloud_MLOPS_demo/containers/data/requirements .
+RUN cd gcloud_MLOPS_demo/containers/data/
+COPY load_data.py .
+COPY requirements.txt .
 
 RUN pip install -r requirements.txt
 ARG project_id='ml-pipeline-309409'
