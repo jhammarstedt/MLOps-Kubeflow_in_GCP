@@ -15,4 +15,4 @@ RUN cat test.py
 ENTRYPOINT ["python3"," test.py"]
 
 #running our prediction script
-RUN python predict.py 
+#RUN python predict.py 
