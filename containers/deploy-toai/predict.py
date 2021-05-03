@@ -14,8 +14,7 @@ def make_prediction(new_data):
     token = GoogleCredentials.get_application_default().get_access_token().access_token
     api = 'https://ml.googleapis.com/v1/projects/{}/models/{}/versions/{}:predict'.format(PROJECT, MODEL_NAME, MODEL_VERSION)
     headers = {'Authorization': 'Bearer ' + token }
-    new_data = 
-    {
+    new_data = {
         'instances':
         {
             'variable1': new_data[0]
