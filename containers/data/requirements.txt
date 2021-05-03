@@ -1,2 +1,5 @@
 mnist
 google-cloud-storage
+pandas
+fsspec
+gcsfs
