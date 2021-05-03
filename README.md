@@ -28,7 +28,7 @@ e.g to run the container that deploys the model to AI platform I would run:
 
 6. Create a pipeline in python using the kubeflow API (currently a notebook in AI platform)
 7. Now we can either run the pipeline manually at the pipeline dashbord from 1. or run it as a script.
-### CI (To be added) ##
+### CI ##
 8. To set up CI and rebuild at every PR:
   * Connect gcloud to github, either using setup_trigger.sh or in the [Trigger UI](https://console.cloud.google.com/cloud-build/triggers?project=ml-pipeline-309409&folder=&organizationId=)
   * Push the newly created cloudbuilds from GCP into the origin otherwise the trigger won't find them

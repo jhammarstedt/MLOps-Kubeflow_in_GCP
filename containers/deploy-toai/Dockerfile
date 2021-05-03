@@ -11,7 +11,8 @@ COPY predict.py ./
 RUN cat test.py
 
 #using bash we run the deploy script we just copied in here
-ENTRYPOINT ["python3","test.py"]
+#ENTRYPOINT ["python3","test.py"]
+ENTRYPOINT ["bash","./deploy.sh"]
 
 #running our prediction script
 #RUN python predict.py 
