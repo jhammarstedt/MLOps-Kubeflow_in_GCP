@@ -14,6 +14,10 @@ This demo was created as a part of an assignment for a DevOps course given at KT
  * Do this by running:
  `gcloud_MLOPS_demo/containers ./build_containers.sh `
  This will run "build_single_container.sh in each directory"
+ * If you wish to try and just build one container, enter the directory which you want to build and run:
+ 
+ ```$ bash ../build_single_container.sh {directory name}```
+ 
 4. Each subfolder (which will be a container will include)
   * A cloudbuild.yaml file (created in build_single_repo.sh) which will let Cloud Build create a docker container by running the included Dockerfile.
   * The DockerFile that mainly runs the task script (e.g deploy.sh)

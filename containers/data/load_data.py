@@ -38,7 +38,10 @@ def preprocess(PROJECT, BUCKET):
     blob = my_bucket.blob(f'data/{filename}')
     blob.upload_from_filename(filename,content_type='csv')
     os.system("rm iris_preproc.csv")
-    
+    with open("/output.txt", "w") as output_file:
+        output_file.write(BUCKET)
+        print("Done!")
+        
 
 if __name__ == '__main__':
   logging.getLogger().setLevel(logging.INFO)
