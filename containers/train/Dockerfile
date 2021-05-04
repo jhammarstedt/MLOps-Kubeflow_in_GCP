@@ -12,6 +12,9 @@ COPY . .
 #COPY gcloud_MLOPS_demo/containers/train/requirements.txt .
 
 #using bash we run the deploy script we just copied in here
+
+
 CMD ["bash","setup_model"]
-ENTRYPOINT ["python","./train_test.py"]#,"--","bash","setup_model.sh"]
+ENTRYPOINT ["python","./train_test.py"] 
+#,"--","bash","setup_model.sh"]
 
