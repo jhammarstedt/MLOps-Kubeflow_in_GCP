@@ -57,7 +57,7 @@ class Network(nn.Module):
         return out
 
 
-def train_network(data,net)
+def train_network(data,net):
 
     loss_fn = torch.nn.CrossEntropyLoss()
     optimizer = Adam(net.parameters(),lr=0.001)
