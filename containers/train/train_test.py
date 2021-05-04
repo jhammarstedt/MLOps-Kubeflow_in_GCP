@@ -87,6 +87,7 @@ def train_network(data,net):
 
 
 if __name__=='__main__':
+    print('read data from bucket')
     data = AnyDataset("gs://ml-pipeline-309409_bucket/data/iris.data")
     device = 'cpu'
 
@@ -96,4 +97,5 @@ if __name__=='__main__':
                 num_classes = data.num_classes)
     print(network)
     trained_network = train_network(data,net=network)
+    print('Saving models to models/model.pt')
     torch.save(trained_network,'models/model.pt') #saving the model locally to then upload it to bucket
