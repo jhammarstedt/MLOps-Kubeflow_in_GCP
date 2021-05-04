@@ -17,7 +17,7 @@ MODEL_DIR=$(gsutil ls gs://ml-pipeline-309409_cloudbuild/models)
 #if [-z "$modelname"]; then
 #	echo "Creating model $MODEL_NAME"
 	
-gcloud ai-platform models create ${MODEL_NAME} --regions $REGION
+gcloud ai-platform models create ${MODEL_NAME} --regions $REGION --project $PROJECT_ID
 #else
 #	echo "The model $MODEL_NAME already exists"
 #fi
