@@ -25,9 +25,9 @@ GCS_MODEL_DIR='models'
 gcloud alpha ai-platform models create $MODEL_NAME — regions europe-west1 — enable-logging — enable-console-logging
 
 gcloud beta ai-platform versions create {MODEL_VERSION} --model={MODEL_NAME} \
-    --origin=gs://${BUCKET_NAME}/{GCS_MODEL_DIR} \
+    --origin=gs://${BUCKET_NAME}/${GCS_MODEL_DIR} \
     --python-version=3.7 \
-    --runtime-version={RUNTIME_VERSION} \
+    --runtime-version=${RUNTIME_VERSION} \
     --machine-type=mls1-c4-m4 \
-    --package-uris={DIST_PACKAGE},{PYTORCH_PACKAGE} \
-    --prediction-class={MODEL_CLASS}
+    --package-uris=${DIST_PACKAGE},${PYTORCH_PACKAGE} \
+    --prediction-class=${MODEL_CLASS}

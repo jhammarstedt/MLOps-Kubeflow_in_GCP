@@ -1,7 +1,7 @@
 
 from setuptools import setup
  
-REQUIRED_PACKAGES = [pandas,torch,sklearn,torchvision]
+REQUIRED_PACKAGES = []
  
 setup(
    name="Test_model",
