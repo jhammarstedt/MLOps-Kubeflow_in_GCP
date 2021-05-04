@@ -5,11 +5,12 @@ FROM gcr.io/deeplearning-platform-release/pytorch-cpu:latest
 RUN git clone https://github.com/jhammarstedt/gcloud_MLOPS_demo.git 
 RUN cd gcloud_MLOPS_demo/containers/train/
 #Copy the deploy script from /containers/$current_container 
-COPY train_test.py .
-COPY models/ .
-COPY gcloud_MLOPS_demo/containers/train/setup_model.sh .
-COPY gcloud_MLOPS_demo/containers/train/requirements.txt .
-
+COPY . .
+#COPY train_test.py .
+#COPY models/ .
+#COPY gcloud_MLOPS_demo/containers/train/setup_model.sh .
+#COPY gcloud_MLOPS_demo/containers/train/requirements.txt .
+RUN ls
 
 #using bash we run the deploy script we just copied in here
 ENTRYPOINT ["python","./train_test.py"]
