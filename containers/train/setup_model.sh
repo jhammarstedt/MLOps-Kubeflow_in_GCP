@@ -6,7 +6,8 @@ python train_test.py
 
 #This file creates a local package with all our pytorch requirements and then copies it to our bucket
 echo "SETTING UP MODEL"
-python setup.py sdist
+
+python models/setup.py sdist
 
 ls
 
