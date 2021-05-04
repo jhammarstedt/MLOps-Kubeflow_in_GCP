@@ -42,3 +42,9 @@ So we will have a Cloud function that will trigger a training pipeline when we u
 2. Training
 3. Deploy to AI platform
 4. Serving
+
+
+## Resources used and further reading
+* [Deploy your own custom model on GCP’s AI platform](https://medium.com/searce/deploy-your-own-custom-model-on-gcps-ai-platform-7e42a5721b43)
+* [How to carry out CI/CD in Machine Learning (“MLOps”) using Kubeflow ML pipelines](https://medium.com/google-cloud/how-to-carry-out-ci-cd-in-machine-learning-mlops-using-kubeflow-ml-pipelines-part-3-bdaf68082112)
+* [GCP documentation on model deployment](https://cloud.google.com/ai-platform/prediction/docs/deploying-models)
