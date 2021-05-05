@@ -9,10 +9,11 @@ BUCKET_MODELPATH='gs://ml-pipeline-309409_bucket/models/model.pth'
 
 
 gsutil cp $LOCAL_MODELPATH $BUCKET_MODELPATH
-
+rm -r models/model.pth
 #This file creates a local package with all our pytorch requirements and then copies it to our bucket
 echo "SETTING UP MODEL"
 
+#DO SDIST AND MOVE PACKAGE TO GS MANUAL FOR NOW
 python models/setup.py sdist
 
 ls
@@ -24,5 +25,5 @@ gsutil cp $LOCAL_PACKAGE $DIST_PACKAGE_BUCKET
 echo "cleaning up temp files in container"
 rm -r Test_model.egg-info
 rm -rf dist/
-rm -r models/model.pth
+
 #gsutil cp dist/Test_model-0.1.tar.gz gs://ml-pipeline-309409_bucket/models/Test_model-0.1.tar.gz

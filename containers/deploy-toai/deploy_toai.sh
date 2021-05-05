@@ -16,7 +16,7 @@ MODEL_NAME='test_iris'
 MODEL_VERSION='v1'
 RUNTIME_VERSION='1.14' 
 MODEL_CLASS='model_prediction.PyTorchIrisClassifier'
-PYTORCH_PACKAGE='gs://ml-pipeline-309409_bucket/packages/torch-1.8.1+cpu-cp37-cp37m-linux_x86_64.whl'
+PYTORCH_PACKAGE='gs://ml-pipeline-309409_bucket/packages/torch-1.8.1+cpu-cp37-cp37m-linux_x86_64.whl' #ignore for now
 DIST_PACKAGE='gs://ml-pipeline-309409_bucket/models/Test_model-0.1.tar.gz'
 BUCKET_NAME='ml-pipeline-309409_bucket'
 GCS_MODEL_DIR='models'
@@ -39,4 +39,5 @@ gcloud beta ai-platform versions create ${MODEL_VERSION} \
     --runtime-version=${RUNTIME_VERSION} \
     --package-uris=${DIST_PACKAGE} \
     --prediction-class=${MODEL_CLASS}
-    
+
+echo "model deployed!"
