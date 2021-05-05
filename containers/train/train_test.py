@@ -1,4 +1,9 @@
 print("Training model!")
+
+""" ideally we would want to run a training job here, but this is just to get the pipeline working
+https://cloud.google.com/ai-platform/training/docs/getting-started-pytorch
+
+"""
 import os
 import torch
 from sklearn.model_selection import train_test_split
@@ -38,10 +43,6 @@ class AnyDataset(Dataset):
 class Network(nn.Module):
     def __init__(self,input_features,hidden_units,num_classes):
         super(Network,self).__init__()
-        #self.L1 = nn.Linear(input_features,hidden_units),
-        #self.A1 = nn.ReLU()
-        #self.L2 = nn.Linear(hidden_units,num_classes),
-        #self.out = nn.Softmax()
         self.linear_relu_stack = nn.Sequential(
             nn.Linear(input_features, hidden_units),
             nn.ReLU(),
@@ -60,7 +61,7 @@ class Network(nn.Module):
 def train_network(data,net):
 
     loss_fn = torch.nn.CrossEntropyLoss()
-    optimizer = Adam(net.parameters(),lr=0.01)
+    optimizer = Adam(net.parameters(),lr=0.001)
 
     train_data = DataLoader(dataset=data, batch_size=32)
     EPOCHS  = 20
@@ -87,7 +88,7 @@ def train_network(data,net):
 
 
 if __name__=='__main__':
-    print('read data from bucket')
+    print('read data from data bucket')
     data = AnyDataset("gs://ml-pipeline-309409_bucket/data/iris.data")
     device = 'cpu'
 

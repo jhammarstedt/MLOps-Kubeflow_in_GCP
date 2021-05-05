@@ -2,10 +2,10 @@
 
 echo "Running traning model.py"
 python train_test.py
-echo "Saving the model.pth to bucket: models/model.pt"
+echo "Saving the model.pth to bucket: models/model.pth"
 
 LOCAL_MODELPATH='models/model.pth'
-BUCKET_MODELPATH='gs://ml-pipeline-309409_bucket/models/model.pt'
+BUCKET_MODELPATH='gs://ml-pipeline-309409_bucket/models/model.pth'
 
 
 gsutil cp $LOCAL_MODELPATH $BUCKET_MODELPATH
