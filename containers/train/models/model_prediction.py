@@ -19,4 +19,4 @@ class PyTorchIrisClassifier(object):
        inputs = torch.Tensor(data)
        outputs = self._model(inputs)
        _ , predicted = torch.max(outputs, 1)
-      return [self.class_vocab[class_index] for class_index in predicted]
+       return [self.class_vocab[class_index] for class_index in predicted]
