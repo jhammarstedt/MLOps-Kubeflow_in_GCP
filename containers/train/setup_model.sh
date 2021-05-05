@@ -2,9 +2,9 @@
 
 echo "Running traning model.py"
 python train_test.py
-echo "Saving the model.pt to bucket: models/model.pt"
+echo "Saving the model.pth to bucket: models/model.pt"
 
-LOCAL_MODELPATH='models/model.pt'
+LOCAL_MODELPATH='models/model.pth'
 BUCKET_MODELPATH='gs://ml-pipeline-309409_bucket/models/model.pt'
 
 
@@ -24,5 +24,5 @@ gsutil cp $LOCAL_PACKAGE $DIST_PACKAGE_BUCKET
 echo "cleaning up temp files in container"
 rm -r Test_model.egg-info
 rm -rf dist/
-rm -r models/model.pt
+rm -r models/model.pth
 #gsutil cp dist/Test_model-0.1.tar.gz gs://ml-pipeline-309409_bucket/models/Test_model-0.1.tar.gz

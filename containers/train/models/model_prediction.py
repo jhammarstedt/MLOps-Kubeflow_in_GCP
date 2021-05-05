@@ -10,7 +10,7 @@ class PyTorchIrisClassifier(object):
    @classmethod
   
    def from_path(cls, model_dir):
-       model_file = os.path.join(model_dir,'model.pt')
+       model_file = os.path.join(model_dir,'model.pth')
        model = torch.load(model_file)
        return cls(model)
       

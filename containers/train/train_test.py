@@ -60,7 +60,7 @@ class Network(nn.Module):
 def train_network(data,net):
 
     loss_fn = torch.nn.CrossEntropyLoss()
-    optimizer = Adam(net.parameters(),lr=0.001)
+    optimizer = Adam(net.parameters(),lr=0.01)
 
     train_data = DataLoader(dataset=data, batch_size=32)
     EPOCHS  = 20
@@ -97,6 +97,6 @@ if __name__=='__main__':
                 num_classes = data.num_classes)
     print(network)
     trained_network = train_network(data,net=network)
-    print('Saving models to models/model.pt')
-    torch.save(trained_network,'models/model.pt') #saving the model locally to then upload it to bucket
+    print('Saving models to models/model.pth')
+    torch.save(trained_network.state_dict(),'models/model.pth') #saving the model locally to then upload it to bucket
     print('model saved')
