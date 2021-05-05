@@ -20,11 +20,13 @@ PYTORCH_PACKAGE='gs://ml-pipeline-309409_bucket/packages/torch-1.8.1+cpu-cp37-cp
 DIST_PACKAGE='gs://ml-pipeline-309409_bucket/models/Test_model-0.1.tar.gz'
 BUCKET_NAME='ml-pipeline-309409_bucket'
 GCS_MODEL_DIR='models/'
+REGION="europe-west1"
+
 
 # Creating model on AI platform
-gcloud alpha ai-platform models create $MODEL_NAME — regions europe-west1 — enable-logging — enable-console-logging
+gcloud alpha ai-platform models create ${MODEL_NAME} --region=europe-west1 --enable-logging --enable-console-logging
 
-gcloud beta ai-platform versions create {MODEL_VERSION} --model={MODEL_NAME} \
+gcloud beta ai-platform versions create ${MODEL_VERSION} --model=${MODEL_NAME} \
     --origin=gs://${BUCKET_NAME}/${GCS_MODEL_DIR} \
     --python-version=3.7 \
     --runtime-version=${RUNTIME_VERSION} \
