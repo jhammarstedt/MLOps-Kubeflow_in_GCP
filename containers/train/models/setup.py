@@ -9,4 +9,5 @@ setup(
    scripts=["model_prediction.py"],
    include_package_data=True,
    install_requires=['torch @ https://download.pytorch.org/whl/cpu/torch-0.4.1-cp35-cp35m-linux_x86_64.whl']
+
 )
