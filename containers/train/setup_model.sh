@@ -1,18 +1,19 @@
 #!/bin/bash
 
 BUCKET=$1
+MODEL_FORMAT='model.pth'
 echo "Running traning model.py"
 
 python train_test.py --datasetPath=${BUCKET}
-echo "Saving the model.pth to bucket: models/model.pt"
+echo "Saving the ${MODEL_FORMAT} to bucket: models/${MODEL_FORMAT}"
 
 
-LOCAL_MODELPATH='models/model.pt'
-BUCKET_MODELPATH='gs://ml-pipeline-309409_bucket/models/model.pt'
+LOCAL_MODELPATH="models/model.pth"
+BUCKET_MODELPATH="gs://ml-pipeline-309409_bucket/models/model.pth"
 
 
 gsutil cp $LOCAL_MODELPATH $BUCKET_MODELPATH
-rm -r models/model.pt
+rm -r $LOCAL_MODELPATH
 #This file creates a local package with all our pytorch requirements and then copies it to our bucket
 echo "SETTING UP MODEL"
 

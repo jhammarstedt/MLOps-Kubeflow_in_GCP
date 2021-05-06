@@ -42,7 +42,7 @@ class AnyDataset(Dataset):
         return torch.Tensor(self.inp[idx]), torch.Tensor(self.oup[idx])
 
 class Network(nn.Module):
-    def __init__(self,input_features,hidden_units,num_classes):
+    def __init__(self,input_features=4,hidden_units=50,num_classes=3):
         super(Network,self).__init__()
         self.linear_relu_stack = nn.Sequential(
             nn.Linear(input_features, hidden_units),
@@ -100,7 +100,7 @@ if __name__=='__main__':
     data = AnyDataset("gs://ml-pipeline-309409_bucket/data/iris.data")
     device = 'cpu'
 
-    MODEL_SAVE_PATH = 'models/model.pt'
+    MODEL_SAVE_PATH = 'models/model.pth'
     hidden = 50
     network = Network(input_features= data.num_features,
                 hidden_units = hidden,
@@ -108,8 +108,10 @@ if __name__=='__main__':
     print(network)
     trained_network = train_network(data,net=network)
     print('Saving models to {}'.format(MODEL_SAVE_PATH))
-    torch.save(trained_network, MODEL_SAVE_PATH) #saving the model locally to then upload it to bucket
+    #torch.save(trained_network, MODEL_SAVE_PATH) #saving the model locally to then upload it to bucket
     
+    torch.save(trained_network.state_dict(),MODEL_SAVE_PATH)
+
     print('model saved')
     with open("/modelOutput.txt", "w") as output_file:
         output_file.write(MODEL_SAVE_PATH)
