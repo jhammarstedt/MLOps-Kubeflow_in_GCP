@@ -110,7 +110,7 @@ if __name__=='__main__':
     print('Saving models to {}'.format(MODEL_SAVE_PATH))
     #torch.save(trained_network, MODEL_SAVE_PATH) #saving the model locally to then upload it to bucket
     
-    torch.save(train_network.state_dict(),MODEL_SAVE_PATH)
+    torch.save(trained_network.state_dict(),MODEL_SAVE_PATH)
 
     print('model saved')
     with open("/modelOutput.txt", "w") as output_file:
