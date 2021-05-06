@@ -1,7 +1,8 @@
 #!/bin/bash
 
+BUCKET=$1
 echo "Running traning model.py"
-python train_test.py
+python train_test.py --datasetPath=${BUCKET}
 echo "Saving the model.pth to bucket: models/model.pth"
 
 LOCAL_MODELPATH='models/model.pth'

@@ -6,6 +6,7 @@ https://cloud.google.com/ai-platform/training/docs/getting-started-pytorch
 """
 import os
 import torch
+import argparse
 from sklearn.model_selection import train_test_split
 from torch import nn
 from torch.utils.data import DataLoader, Dataset
@@ -21,11 +22,11 @@ class AnyDataset(Dataset):
     def __init__(self,csvpath, mode = 'train'):
         self.mode = mode
         df = pd.read_csv(csvpath,delimiter=',')
-        
-        self.le = LabelEncoder() 
+
+        self.le = LabelEncoder()
         df['class'] = self.le.fit_transform(df['class'])
-        
-        
+
+
         self.num_classes = len(df['class'].unique())
         self.num_features = len(df.columns)-1
         self.num_samples = df.shape[0]
@@ -51,8 +52,8 @@ class Network(nn.Module):
             nn.Linear(hidden_units, num_classes),
             nn.Softmax(dim=1)
             )
-        
-        
+
+
     def forward(self,x):
         out = self.linear_relu_stack(x)
         return out
@@ -74,7 +75,7 @@ def train_network(data,net):
         for x_batch, y_batch in train_data:
             # Zero gradients
             optimizer.zero_grad()
-            
+
             y_pred = net(x_batch)
             y_batch = y_batch.reshape(-1,).long()
             loss = loss_fn(y_pred, y_batch)
@@ -88,16 +89,27 @@ def train_network(data,net):
 
 
 if __name__=='__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--datasetPath',
+                        type=str,
+                        required=True,
+                        help='Bucket to store outputs.')
+
+    args = parser.parse_args()
     print('read data from data bucket')
     data = AnyDataset("gs://ml-pipeline-309409_bucket/data/iris.data")
     device = 'cpu'
 
+    MODEL_SAVE_PATH = 'models/model.pth'
     hidden = 50
     network = Network(input_features= data.num_features,
                 hidden_units = hidden,
                 num_classes = data.num_classes)
     print(network)
     trained_network = train_network(data,net=network)
-    print('Saving models to models/model.pth')
-    torch.save(trained_network.state_dict(),'models/model.pth') #saving the model locally to then upload it to bucket
+    print('Saving models to {}'.format(MODEL_SAVE_PATH))
+    torch.save(trained_network.state_dict(), MODEL_SAVE_PATH) #saving the model locally to then upload it to bucket
     print('model saved')
+    with open("/modelOutput.txt", "w") as output_file:
+        output_file.write(MODEL_SAVE_PATH)
+        print("Done!")

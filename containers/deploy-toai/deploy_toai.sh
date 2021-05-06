@@ -2,6 +2,7 @@
 #THIS SCRIPT WILL DEPLOY OUR MODEL TO AI PLATFORM
 
 
+MODEL=$1
 # Creating a version resrouce
 # origin: Path to GCS directory where the model file is stored.
 # python-version: The python version your code is running onto.
