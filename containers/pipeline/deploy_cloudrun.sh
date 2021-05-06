@@ -1,8 +1,8 @@
 #!/bin/bash
 
-if [ "$#" -ne 2 ]; then
-    echo "Usage: ./1_deploy_cloudrun.sh pipelines_host"
-    echo "  eg:  ./1_deploy_cloudrun.sh 447cdd24f70c9541-dot-us-central1.notebooks.googleusercontent.com"
+if [ "$#" -ne 1 ]; then
+    echo "Usage: ./deploy_cloudrun.sh pipelines_host"
+    echo "  eg:  ./deploy_cloudrun.sh 447cdd24f70c9541-dot-us-central1.notebooks.googleusercontent.com"
     exit
 fi
 
@@ -13,7 +13,7 @@ REGION=us-central1
 PIPELINES_HOST=$1
 
 # build the container for Cloud Run
-../build_container.sh
+../build_single_container.sh $(basename $(pwd))
 
 # deploy Cloud Run
 gcloud run deploy kfpdemo \
