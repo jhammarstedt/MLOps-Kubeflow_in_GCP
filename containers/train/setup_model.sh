@@ -14,16 +14,16 @@ rm -r models/model.pth
 echo "SETTING UP MODEL"
 
 #DO SDIST AND MOVE PACKAGE TO GS MANUAL FOR NOW
-python models/setup.py sdist
+# python models/setup.py sdist
 
 ls
 
 DIST_PACKAGE_BUCKET='gs://ml-pipeline-309409_bucket/models/Test_model-0.1.tar.gz'
 LOCAL_PACKAGE='dist/Test_model-0.1.tar.gz'
 
-gsutil cp $LOCAL_PACKAGE $DIST_PACKAGE_BUCKET
-echo "cleaning up temp files in container"
-rm -r Test_model.egg-info
-rm -rf dist/
+# gsutil cp $LOCAL_PACKAGE $DIST_PACKAGE_BUCKET
+#echo "cleaning up temp files in container"
+#rm -r Test_model.egg-info
+#rm -rf dist/
 
 #gsutil cp dist/Test_model-0.1.tar.gz gs://ml-pipeline-309409_bucket/models/Test_model-0.1.tar.gz
