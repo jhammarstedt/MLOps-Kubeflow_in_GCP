@@ -27,4 +27,6 @@ COPY requirements.txt ./
 # Install production dependencies.
 RUN pip install -r requirements.txt
 
+COPY . ./
+
 ENTRYPOINT ["python","mlops_pipeline.py"]
