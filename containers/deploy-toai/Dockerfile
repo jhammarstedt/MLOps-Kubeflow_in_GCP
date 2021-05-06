@@ -5,11 +5,9 @@ FROM python:3.8
 RUN git clone https://github.com/jhammarstedt/gcloud_MLOPS_demo.git 
 RUN cd gcloud_MLOPS_demo/containers/deploy-toai/
 #Copy the deploy script from /containers/$current_container 
-COPY test.py .
+
 COPY deploy_toai.sh .
 
-
-RUN cat test.py
 
 #using bash we run the deploy script we just copied in here
 #ENTRYPOINT ["python3","test.py"]
