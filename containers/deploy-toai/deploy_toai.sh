@@ -32,7 +32,7 @@ gcloud alpha ai-platform models create ${MODEL_NAME} \
 	--project=${PROJECT}
 
 gcloud beta ai-platform versions create ${MODEL_VERSION} \
-		--project=${PROJECT}
+		--project=${PROJECT} \
     --model=${MODEL_NAME} \
     --origin=gs://${BUCKET_NAME}/${GCS_MODEL_DIR}/ \
     --python-version=3.5 \
