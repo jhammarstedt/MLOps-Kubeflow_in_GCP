@@ -8,8 +8,8 @@ python train_test.py --datasetPath=${BUCKET}
 echo "Saving the ${MODEL_FORMAT} to bucket: models/${MODEL_FORMAT}"
 
 
-LOCAL_MODELPATH='models/${MODEL_FORMAT}'
-BUCKET_MODELPATH='gs://ml-pipeline-309409_bucket/models/${MODEL_FORMAT}'
+LOCAL_MODELPATH="models/${MODEL_FORMAT}"
+BUCKET_MODELPATH="gs://ml-pipeline-309409_bucket/models/${MODEL_FORMAT}"
 
 
 gsutil cp $LOCAL_MODELPATH $BUCKET_MODELPATH
