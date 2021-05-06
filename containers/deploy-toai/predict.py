@@ -1,3 +1,5 @@
+# NOT USED NOW
+
 from oauth2client.client import GoogleCredentials
 import requests
 import json
