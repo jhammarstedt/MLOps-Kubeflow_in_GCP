@@ -12,16 +12,13 @@ BUCKET_MODELPATH='gs://ml-pipeline-309409_bucket/models/model.pt'
 
 
 gsutil cp $LOCAL_MODELPATH $BUCKET_MODELPATH
-rm -r models/model.pth
+rm -r models/model.pt
 #This file creates a local package with all our pytorch requirements and then copies it to our bucket
 echo "SETTING UP MODEL"
 
 #DO SDIST AND MOVE PACKAGE TO GS MANUAL FOR NOW
 
 # python models/setup.py sdist
-
-
-ls
 
 DIST_PACKAGE_BUCKET='gs://ml-pipeline-309409_bucket/models/Test_model-0.1.tar.gz'
 LOCAL_PACKAGE='dist/Test_model-0.1.tar.gz'
