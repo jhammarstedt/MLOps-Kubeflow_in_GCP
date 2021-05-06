@@ -14,7 +14,8 @@ MODEL=$1
 # prediction-class: Used to provide custom prediction class names.
 PROJECT='ml-pipeline-309409'
 MODEL_NAME='test_iris'
-MODEL_VERSION='v1'
+MODEL_VERSION='v2'
+echo "training model ${MODEL_VERSION}"
 RUNTIME_VERSION='1.14'
 MODEL_CLASS='model_prediction.PyTorchIrisClassifier'
 PYTORCH_PACKAGE='gs://ml-pipeline-309409_bucket/packages/torch-1.8.1+cpu-cp37-cp37m-linux_x86_64.whl' #ignore for now
