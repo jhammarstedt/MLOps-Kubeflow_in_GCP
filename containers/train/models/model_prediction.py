@@ -3,7 +3,7 @@ import os
 import pandas as pd
 from google.cloud import storage
 import torch
-from train_test import Network
+from network import Network
 
 class PyTorchIrisClassifier(object):
     def __init__(self, model):
