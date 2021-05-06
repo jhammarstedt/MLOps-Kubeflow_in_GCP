@@ -13,10 +13,10 @@ REGION=us-central1
 PIPELINES_HOST=$1
 
 # build the container for Cloud Run
-../build_single_container.sh $(basename $(pwd))
+bash ../build_single_container.sh $(basename $(pwd))
 
 # deploy Cloud Run
 gcloud run deploy kfpdemo \
    --platform=managed --region=${REGION} \
-   --image gcr.io/${PROJECT}/babyweight-pipeline-pipeline \
+   --image gcr.io/${PROJECT}/ml-demo-pipeline:latest \
    --set-env-vars PROJECT=${PROJECT},BUCKET=${BUCKET},PIPELINES_HOST=${PIPELINES_HOST}
