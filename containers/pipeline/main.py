@@ -24,6 +24,8 @@ def preprocess_train_deploy(
           ],
         file_outputs = {'bucket':'/output.txt'}
     ).apply(use_gcp_secret('user-gcp-sa'))
+    data.container.set_image_pull_policy('Always')
+
 
     # 2 train
     train = dsl.ContainerOp(
@@ -35,6 +37,8 @@ def preprocess_train_deploy(
       ],
       file_outputs={'model': '/modelOutput.txt'}
     ).apply(use_gcp_secret('user-gcp-sa'))
+    train.container.set_image_pull_policy('Always')
+
 
     # 3 deploy the trained model to Cloud ML Engine
     deploymodel = dsl.ContainerOp(
@@ -50,6 +54,7 @@ def preprocess_train_deploy(
       }
     ).apply(use_gcp_secret('user-gcp-sa'))
     deploymodel.execution_options.caching_strategy.max_cache_staleness = "P0D"
+    deploymodel.container.set_image_pull_policy('Always')
 
 
 def handle_newfile(data, context):
