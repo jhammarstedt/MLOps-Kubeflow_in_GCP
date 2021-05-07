@@ -8,12 +8,12 @@ fi
 
 
 PROJECT=$(gcloud config get-value project)
-BUCKET="${PROJECT}_bucket"
+BUCKET="${PROJECT}-data-bucket"
 REGION=us-central1
 PIPELINES_HOST=$1
 
-
+# The function must exist in the main.py file
 gcloud functions deploy handle_newfile --runtime python37 \
- --set-env-vars PROJECT=${PROJECT},BUCKET=${BUCKET},PIPELINES_HOST=${PIPELINES_HOST},HPARAM_JOB=${HPARAM_JOB} \
- --trigger-resource="projects/${PROJECT}/buckets/${BUCKET}/data"  \
+ --set-env-vars PROJECT=${PROJECT},BUCKET=${BUCKET},PIPELINES_HOST=${PIPELINES_HOST} \
+ --trigger-resource="${BUCKET}"  \
  --trigger-event=google.storage.object.finalize
