@@ -14,6 +14,6 @@ PIPELINES_HOST=$1
 
 
 gcloud functions deploy handle_newfile --runtime python37 \
- --set-env-vars PROJECT=${PROJECT},BUCKET=${BUCKET},PIPELINES_HOST=${PIPELINES_HOST},HPARAM_JOB=${HPARAM_JOB} \
+ --set-env-vars PROJECT=${PROJECT},BUCKET=${BUCKET},PIPELINES_HOST=${PIPELINES_HOST} \
  --trigger-resource="${BUCKET}"  \
  --trigger-event=google.storage.object.finalize
