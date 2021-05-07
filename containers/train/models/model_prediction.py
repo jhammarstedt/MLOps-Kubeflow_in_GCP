@@ -15,7 +15,6 @@ class PyTorchIrisClassifier(object):
         model_file = os.path.join(model_dir,'model.pth')
         model = Network()
         model.load_state_dict(torch.load(model_file))
-        #model = torch.load(model_file)
         return cls(model)
         
     def predict(self, instances, **kwargs):
