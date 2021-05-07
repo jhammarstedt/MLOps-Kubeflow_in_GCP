@@ -5,7 +5,7 @@ PROJECT_ID=$(gcloud config config-helper --format "value(configuration.propertie
 
 DIR_IN_REPO="containers/${1::-1}" #passing it from build_containers  #$(pwd | sed 's%gcloud_MLOPS_demo/% %g' | awk '{print $2}')
 echo "DIR IN REPO $DIR_IN_REPO"
-echo "Creating ${CONTAINER_NAME}:latest from Dockerfile:"
+echo "Creating image ${CONTAINER_NAME}:latest from Dockerfile:"
 cat Dockerfile
 
 #check if the cloudbuild file already exists
