@@ -69,12 +69,14 @@ To set up CI and rebuild at every push:
 ## 📦 CD
 CD can be necessary when we want to retrain/finetune the model give that we get new data, not every time we update a component.
 So we will have a Cloud function that will trigger a training pipeline when we upload new data to the Cloud Storage.
-1. Get the pipeline host url from pipiline settings (looks like this: https://39ddd8e8124976d-dot-us-central1.pipelines.googleusercontent.com, ideally save it as an PIPELINE_HOST environment variable).
+1. Get the pipeline host url from pipeline settings (looks like [this:](https://39ddd8e8124976d-dot-us-central1.pipelines.googleusercontent.com), ideally save it as an PIPELINE_HOST environment variable).
 2. in pipeline folder, run the deploy script
 
     `$ ./deploy_cloudfunction $PIPELINE_HOST`
 
 3. Now, whenever a new file is added or deleted from the project bucket, it will rerun the pipeline.
+
+<img width="245" alt="gcloud_meme" src="https://user-images.githubusercontent.com/52280124/117477536-661e9900-af5e-11eb-8615-7e2e2f783832.PNG">
 
 ## 👓 Resources used and further reading
 * [Deploy your own custom model on GCP’s AI platform](https://medium.com/searce/deploy-your-own-custom-model-on-gcps-ai-platform-7e42a5721b43)
