@@ -25,16 +25,19 @@ The following topics will be covered:
 ## 🌉 Setting up the pipeline
 Here we will go through the process of running the pipeline step by step:
 
-1. Create a gcp project, open the shell (make sure you're in the project), and fork the repository `$ git clone clone jhammarstedt/gcloud_MLOPS_demo.git`
+1. Create a gcp project, open the shell (make sure you're in the project), and fork the repository 
+  
+      `$ git clone clone jhammarstedt/gcloud_MLOPS_demo.git`
+
 2. Create a [kubeflow pipeline](https://console.cloud.google.com/ai-platform/pipelines)
-3. Run the set_auth.sh script in google cloud shell (might wanna change the SA_NAME), this gives us the roles we need to run the pipeline
+3. Run the `$ ./scripts/set_auth.sh` script in google cloud shell (might wanna change the SA_NAME), this gives us the roles we need to run the pipeline
 4. Create a docker container for each step (each of the folders in the containers repo representes a different step)
-       * Do this by running: ```$ gcloud_MLOPS_demo/containers ./build_containers.sh ``` from the cloud shell.
+       * Do this by running: ```$ gcloud_MLOPS_demo/containers ./build_containers.sh``` from the cloud shell.
 
-      This will run "build_single_container.sh in each directory"
-      * If you wish to try and just build one container, enter the directory which you want to build and run:
-
-        `$ bash ../build_single_container.sh {directory name}`
+    This will run "build_single_container.sh in each directory"
+    * If you wish to try and just build one container, enter the directory which you want to build and run:
+      
+      `$ bash ../build_single_container.sh {directory name}`
 
 5. Each subfolder (which will be a container) includes:
     <details>
@@ -47,18 +50,19 @@ Here we will go through the process of running the pipeline step by step:
     </details>
 6. To test the container manually run
 
-    `docker run -t gcr.io/{YOUR_PROJECT}/{IMAGE}:latest --project {YOUR_PROJECT} --bucket {YOUR_BUCKET} local`
+    `$ docker run -t gcr.io/{YOUR_PROJECT}/{IMAGE}:latest --project {YOUR_PROJECT} --bucket {YOUR_BUCKET} local`
 
     e.g to run the container that deploys the model to AI platform I would run:
 
-    `docker run -t gcr.io/ml-pipeline-309409/ml-demo-deploy-toai `
+    `$ docker run -t gcr.io/ml-pipeline-309409/ml-demo-deploy-toai `
 
 7. Create a pipeline in python using the kubeflow API (currently a notebook in AI platform)
 8. Now we can either run the pipeline manually at the pipeline dashbord from 1. or run it as a script.
 
 ## 🛠 CI
-To set up CI and rebuild at every PR:
-  * Connect gcloud to github, either using setup_trigger.sh or in the [Trigger UI](https://console.cloud.google.com/cloud-build/triggers?project=ml-pipeline-309409&folder=&organizationId=)
+To set up CI and rebuild at every push:
+  * Connect gcloud to github, either in the [Trigger UI](https://console.cloud.google.com/cloud-build/triggers?project=ml-pipeline-309409&folder=&organizationId=) or run:
+            `$ ./scripts setup_trigger.sh`
   * Push the newly created cloudbuilds from GCP into the origin otherwise the trigger won't find them
   * This trigger will run everytime a push to master happens in any of the containers and thus rebuild the affected Docker Image
 
@@ -68,7 +72,7 @@ So we will have a Cloud function that will trigger a training pipeline when we u
 1. Get the pipeline host url from pipiline settings (looks like this: https://39ddd8e8124976d-dot-us-central1.pipelines.googleusercontent.com, ideally save it as an PIPELINE_HOST environment variable).
 2. in pipeline folder, run the deploy script
 
-`./deploy_cloudfunction $PIPELINE_HOST`
+    `$ ./deploy_cloudfunction $PIPELINE_HOST`
 
 3. Now, whenever a new file is added or deleted from the project bucket, it will rerun the pipeline.
 
