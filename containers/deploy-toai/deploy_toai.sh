@@ -44,4 +44,6 @@ gcloud beta ai-platform versions create ${MODEL_VERSION} \
     --package-uris=${DIST_PACKAGE} \
     --prediction-class=${MODEL_CLASS}
 
+echo $MODEL_NAME > /model.txt
+echo $MODEL_VERSION > /version.txt
 echo "model deployed!"
