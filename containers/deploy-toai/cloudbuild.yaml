@@ -1,6 +1,6 @@
 steps:
       - name: 'gcr.io/cloud-builders/docker'  
-        dir: 'containers/deploy-toa' # remove-for-manual
+        dir: 'containers/deploy-toai' # remove-for-manual
         #Use cloudbuild to build and use -t to exit after running this command
         #path is gcr.io/PROJECT_ID/IMAGE_NAME
         args: ['build','-t','gcr.io/ml-pipeline-309409/ml-demo-deploy-toai:latest','.']
