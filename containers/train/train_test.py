@@ -20,7 +20,7 @@ from torch.autograd import Variable
 import numpy as np
 
 from models.network import Network
-
+print("loading from config")
 CONFIG = configparser.ConfigParser()
 CONFIG.read("models/config.txt")
 
