@@ -21,10 +21,11 @@ create_github_trigger() {
 	gcloud beta builds triggers create github --build-config="${DIR_IN_REPO}/cloudbuild.yaml" \
       		--included-files="${DIR_IN_REPO}/**" --branch-pattern="^master$" --repo-name=${REPO_NAME} --repo-owner=${REPO_OWNER} 
 }
-
+cd containers/
 for container in $(ls -d */| sed 's%/%%g');do
     cd $container
     echo "Container $container"
     create_github_trigger  
     cd ..
 done
+cd ..
