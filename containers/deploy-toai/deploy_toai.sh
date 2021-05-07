@@ -14,7 +14,7 @@ MODEL=$1
 # prediction-class: Used to provide custom prediction class names.
 PROJECT='ml-pipeline-309409'
 MODEL_NAME='test_iris'
-MODEL_VERSION='v2'
+MODEL_VERSION='v1'
 RUNTIME_VERSION='1.14'
 MODEL_CLASS='model_prediction.PyTorchIrisClassifier'
 PYTORCH_PACKAGE='gs://ml-pipeline-309409_bucket/packages/torch-1.8.1+cpu-cp37-cp37m-linux_x86_64.whl' #ignore for now
@@ -24,31 +24,29 @@ GCS_MODEL_DIR='models'
 REGION='global'
 #REGION='us-central1'
 
-m_name=$(gcloud ai-platform models list \ 
-  --region $REGION | grep -w ${MODEL_NAME})
+m_name=$(gcloud ai-platform models list --region $REGION | grep -w ${MODEL_NAME})
 
-if [-z $m_name]; then
+if [ -z $m_name ]; then
   echo "Creating model"
   # Creating model on AI platform since it did not exist
-  gcloud alpha ai-platform models create ${MODEL_NAME} \ 
-    --region=${REGION} \ 
-    --enable-logging \ 
-    --enable-console-logging \ 
-    --project=${PROJECT}
+  gcloud alpha ai-platform models create ${MODEL_NAME} \
+	  --region=${REGION} \
+	  --enable-logging \
+	  --enable-console-logging \
+	  --project=${PROJECT}
 else
   echo "{$MODEL_NAME} already exists"
 fi
 
 #check if version exists
 
-ver=$(gcloud ai-platform versions list \ 
-  --model ${MODEL_NAME} --region $REGION | grep -w ${MODEL_VERSION})
-
-if [-z $ver]; then
+ver=$(gcloud ai-platform versions list --model ${MODEL_NAME} --region $REGION | grep -w ${MODEL_VERSION})
+echo "$ver"
+if [ ${ver} ]; then
   echo "Version already exists, removing old version ${ver}"
-  gcloud ai-platform versions delete ${MODEL_VERSION}\ 
-    --model ${MODEL_NAME}\ 
-    --region ${REGION}
+  gcloud ai-platform versions delete ${MODEL_VERSION} \
+	  --model ${MODEL_NAME} \
+	  --region ${REGION}
 fi
 
 echo "Creating new model version ${MODEL_VERSION}"
