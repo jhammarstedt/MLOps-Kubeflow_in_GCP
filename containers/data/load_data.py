@@ -17,15 +17,17 @@ from google.cloud import storage
 # }
 
 def preprocess(PROJECT, BUCKET):
+    
     OUTPUT_DIR = 'gs://{0}/data/'.format(BUCKET)
 
     storage_client = storage.Client(project=PROJECT)
 
     buckets = storage_client.list_buckets()
     # blob = bucket.blob('/mnist/')
-    my_bucket = storage_client.get_bucket('ml-pipeline-309409_bucket')
+    my_bucket = storage_client.get_bucket("${PROJECT}_bucket")
     
-    data = pd.read_csv("gs://ml-pipeline-309409_bucket/data/iris.data",delimiter=',')
+    print("loading data from data bucket")
+    data = pd.read_csv("gs://${PROJECT}-data-bucket/data/iris.data",delimiter=',')
     print(buckets)
     
     print('preprocessing data')
@@ -36,6 +38,7 @@ def preprocess(PROJECT, BUCKET):
     
     data.to_csv(filename,index=False)
     blob = my_bucket.blob(f'data/{filename}')
+    print("Saving preproc data to project bucket")
     blob.upload_from_filename(filename,content_type='csv')
     os.system("rm iris_preproc.csv")
     with open("/output.txt", "w") as output_file:
