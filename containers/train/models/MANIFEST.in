@@ -1,4 +1,4 @@
-include config.txt
 include setup.py
 include network.py
+include config.txt
 include model_prediction.py

@@ -2,7 +2,7 @@
 path=gs://ml-pipeline-309409_bucket/data/iris.data
 device=cpu
 
-[model]
+[modelS]
 model_name =Iris_test1
 Hidden_layers=50
 input_features=4
