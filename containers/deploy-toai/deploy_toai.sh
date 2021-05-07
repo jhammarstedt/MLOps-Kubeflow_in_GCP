@@ -15,7 +15,6 @@ MODEL=$1
 PROJECT='ml-pipeline-309409'
 MODEL_NAME='test_iris'
 MODEL_VERSION='v2'
-echo "training model ${MODEL_VERSION}"
 RUNTIME_VERSION='1.14'
 MODEL_CLASS='model_prediction.PyTorchIrisClassifier'
 PYTORCH_PACKAGE='gs://ml-pipeline-309409_bucket/packages/torch-1.8.1+cpu-cp37-cp37m-linux_x86_64.whl' #ignore for now
@@ -26,7 +25,7 @@ REGION='global'
 #REGION='us-central1'
 
 m_name=$(gcloud ai-platform models list \ 
-  --model ${MODEL_NAME} --region $REGION | grep -w v1)
+  --region $REGION | grep -w ${MODEL_NAME})
 
 if [-z $m_name]; then
   echo "Creating model"
