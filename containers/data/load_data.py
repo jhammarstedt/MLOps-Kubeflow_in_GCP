@@ -40,7 +40,7 @@ def preprocess(PROJECT, BUCKET):
     os.system("rm iris_preproc.csv")
     with open("/output.txt", "w") as output_file:
         output_file.write(BUCKET)
-        print("Done!")
+        print("Done")
         
 
 if __name__ == '__main__':
