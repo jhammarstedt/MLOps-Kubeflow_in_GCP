@@ -26,7 +26,7 @@ REGION='global'
 
 m_name=$(gcloud ai-platform models list --region $REGION | grep -w ${MODEL_NAME})
 
-if [ -z $m_name ]; then
+if [ -z  $m_name ]; then
   echo "Creating model"
   # Creating model on AI platform since it did not exist
   gcloud alpha ai-platform models create ${MODEL_NAME} \
@@ -41,12 +41,14 @@ fi
 #check if version exists
 
 ver=$(gcloud ai-platform versions list --model ${MODEL_NAME} --region $REGION | grep -w ${MODEL_VERSION})
-echo "$ver"
-if [ ${ver} ]; then
+echo "We found ${ver}"
+
+if [ "$ver" ]; then
   echo "Version already exists, removing old version ${ver}"
-  gcloud ai-platform versions delete ${MODEL_VERSION} \
+  yes | gcloud ai-platform versions delete ${MODEL_VERSION} \
 	  --model ${MODEL_NAME} \
 	  --region ${REGION}
+  sleep 5
 fi
 
 echo "Creating new model version ${MODEL_VERSION}"
