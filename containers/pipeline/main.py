@@ -49,6 +49,7 @@ def preprocess_train_deploy(
         'version': '/version.txt'
       }
     ).apply(use_gcp_secret('user-gcp-sa'))
+    deploymodel.execution_options.caching_strategy.max_cache_staleness = "P0D"
 
 
 def handle_newfile(data, context):
