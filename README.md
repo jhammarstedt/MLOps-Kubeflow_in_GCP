@@ -2,7 +2,10 @@
 
 # MLOPS: CI&CD with Kubeflow Pipelines in GCP (WIP)
 
+<img src ="https://www.docker.com/sites/default/files/d8/styles/role_icon/public/2019-07/Moby-logo.png?itok=sYH_JEaJ" align = "right" height = 50 width = 70 />
+
 This repo will demonstrate how to take the first step towards MLOps by setting up and deploying a ML CI/CD pipeline using Google Clouds AI Platform, Kubeflow and Docker.
+
 
 This demo was created as a part of an assignment for a DevOps course given at KTH spring 2021 and a video demo will also be added shortly.
 ## ✍ Authors
