@@ -1,0 +1,15 @@
+[data]
+path=gs://ml-pipeline-309409_bucket/data/iris.data
+device=cpu
+
+
+[model]
+model_name =Iris_test1
+Hidden_layers=50
+input_features=4
+num_classes=3
+
+[training]
+epochs=20
+lr=0.01
+batch_size=32

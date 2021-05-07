@@ -7,6 +7,7 @@ https://cloud.google.com/ai-platform/training/docs/getting-started-pytorch
 import os
 import torch
 import argparse
+import configparser
 from sklearn.model_selection import train_test_split
 from torch import nn
 from torch.utils.data import DataLoader, Dataset
@@ -17,6 +18,11 @@ import tqdm
 from sklearn.preprocessing import LabelEncoder
 from torch.autograd import Variable
 import numpy as np
+
+from models.network import Network
+
+CONFIG = configparser.ConfigParser()
+CONFIG.read("models/config.txt")
 
 class AnyDataset(Dataset):
     def __init__(self,csvpath, mode = 'train'):
@@ -41,31 +47,34 @@ class AnyDataset(Dataset):
     def __getitem__(self, idx):
         return torch.Tensor(self.inp[idx]), torch.Tensor(self.oup[idx])
 
-class Network(nn.Module):
-    def __init__(self,input_features=4,hidden_units=50,num_classes=3):
-        super(Network,self).__init__()
-        self.linear_relu_stack = nn.Sequential(
-            nn.Linear(input_features, hidden_units),
-            nn.ReLU(),
-            nn.Linear(hidden_units, hidden_units),
-            nn.ReLU(),
-            nn.Linear(hidden_units, num_classes),
-            nn.Softmax(dim=1)
-            )
+# class Network(nn.Module):
+#     def __init__(self,input_features=4,hidden_units=50,num_classes=3):
+#         super(Network,self).__init__()
+#         self.linear_relu_stack = nn.Sequential(
+#             nn.Linear(input_features, hidden_units),
+#             nn.ReLU(),
+#             nn.Linear(hidden_units, hidden_units),
+#             nn.ReLU(),
+#             nn.Linear(hidden_units, num_classes),
+#             nn.Softmax(dim=1)
+#             )
 
 
-    def forward(self,x):
-        out = self.linear_relu_stack(x)
-        return out
+#     def forward(self,x):
+#         out = self.linear_relu_stack(x)
+#         return out
 
 
 def train_network(data,net):
 
-    loss_fn = torch.nn.CrossEntropyLoss()
-    optimizer = Adam(net.parameters(),lr=0.001)
+    EPOCHS = int(CONFIG.get("training","epochs"))
+    batch_size = int(CONFIG.get("training","batch_size"))
+    LR = float(CONFIG.get("training","lr"))
 
-    train_data = DataLoader(dataset=data, batch_size=32)
-    EPOCHS  = 20
+    loss_fn = torch.nn.CrossEntropyLoss()
+    optimizer = Adam(net.parameters(),lr=LR)
+
+    train_data = DataLoader(dataset=data, batch_size=batch_size)
 
     loss_list     = np.zeros((EPOCHS,))
     accuracy_list = np.zeros((EPOCHS,))
@@ -97,14 +106,20 @@ if __name__=='__main__':
 
     args = parser.parse_args()
     print('read data from data bucket')
-    data = AnyDataset("gs://ml-pipeline-309409_bucket/data/iris.data")
-    device = 'cpu'
+    data_path = CONFIG.get("data","path")
+    
+    data = AnyDataset(data_path)
+    
+    device = CONFIG.get("data",'device')
 
     MODEL_SAVE_PATH = 'models/model.pth'
-    hidden = 50
-    network = Network(input_features= data.num_features,
+    hidden = int(CONFIG.get("model","Hidden_layers"))
+    N_classes = int(CONFIG.get("model","num_classes"))
+    Inp_features  = int(CONFIG.get("model","input_features"))
+    network = Network(input_features= Inp_features,
                 hidden_units = hidden,
-                num_classes = data.num_classes)
+                num_classes = N_classes)
+    
     print(network)
     trained_network = train_network(data,net=network)
     print('Saving models to {}'.format(MODEL_SAVE_PATH))

@@ -5,6 +5,8 @@ from google.cloud import storage
 import torch
 from network import Network
 from torch import nn
+import configparser
+
 class PyTorchIrisClassifier(object):
     def __init__(self, model):
         self._model = model
@@ -13,7 +15,18 @@ class PyTorchIrisClassifier(object):
     @classmethod
     def from_path(cls, model_dir):
         model_file = os.path.join(model_dir,'model.pth')
-        model = Network()
+
+        CONFIG = configparser.Configparser()
+        CONFIG.read("config.txt")
+        
+        hidden = int(CONFIG.get("model","Hidden_layers"))
+        N_classes = int(CONFIG.get("model","num_classes"))
+        Inp_features  = int(CONFIG.get("model","input_features"))
+        
+        model = Network(input_features= Inp_features,
+                hidden_units = hidden,
+                num_classes = N_classes)
+
         model.load_state_dict(torch.load(model_file))
         #model = torch.load(model_file)
         return cls(model)
