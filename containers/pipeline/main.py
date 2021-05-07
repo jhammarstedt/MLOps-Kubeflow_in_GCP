@@ -51,7 +51,7 @@ def preprocess_train_deploy(
     ).apply(use_gcp_secret('user-gcp-sa'))
 
 
-def handle_newfile():
+def handle_newfile(data, context):
     PIPELINES_HOST = os.environ.get('PIPELINES_HOST', "Environment variable PIPELINES_HOST not set")
     PROJECT = os.environ.get('PROJECT', "Environment variable PROJECT not set")
     BUCKET = os.environ.get('BUCKET', "Environment variable BUCKET not set")
