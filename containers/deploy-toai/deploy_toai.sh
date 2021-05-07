@@ -25,13 +25,34 @@ GCS_MODEL_DIR='models'
 REGION='global'
 #REGION='us-central1'
 
+m_name=$(gcloud ai-platform models list \ 
+  --model ${MODEL_NAME} --region $REGION | grep -w v1)
 
-# Creating model on AI platform
-gcloud alpha ai-platform models create ${MODEL_NAME} \
-	--region=${REGION} \
-       	--enable-logging \
-	--enable-console-logging \
-	--project=${PROJECT}
+if [-z $m_name]; then
+  echo "Creating model"
+  # Creating model on AI platform since it did not exist
+  gcloud alpha ai-platform models create ${MODEL_NAME} \ 
+    --region=${REGION} \ 
+    --enable-logging \ 
+    --enable-console-logging \ 
+    --project=${PROJECT}
+else
+  echo "{$MODEL_NAME} already exists"
+fi
+
+#check if version exists
+
+ver=$(gcloud ai-platform versions list \ 
+  --model ${MODEL_NAME} --region $REGION | grep -w ${MODEL_VERSION})
+
+if [-z $ver]; then
+  echo "Version already exists, removing old version ${ver}"
+  gcloud ai-platform versions delete ${MODEL_VERSION}\ 
+    --model ${MODEL_NAME}\ 
+    --region ${REGION}
+fi
+
+echo "Creating new model version ${MODEL_VERSION}"
 
 gcloud beta ai-platform versions create ${MODEL_VERSION} \
 		--project=${PROJECT} \
@@ -44,4 +65,4 @@ gcloud beta ai-platform versions create ${MODEL_VERSION} \
     --package-uris=${DIST_PACKAGE} \
     --prediction-class=${MODEL_CLASS}
 
-echo "model deployed!"
+echo "If no error: Check AI platform for deployed model"
