@@ -3,7 +3,7 @@ echo "Current dir $(pwd) "
 CONTAINER_NAME=ml-demo-$(basename $(pwd)) #gets the last folder which is our name
 PROJECT_ID=$(gcloud config config-helper --format "value(configuration.properties.core.project)")
 
-DIR_IN_REPO="containers/${1::}" #passing it from build_containers  #$(pwd | sed 's%gcloud_MLOPS_demo/% %g' | awk '{print $2}')
+DIR_IN_REPO="containers/${1}" #passing it from build_containers  #$(pwd | sed 's%gcloud_MLOPS_demo/% %g' | awk '{print $2}')
 echo "DIR IN REPO $DIR_IN_REPO"
 echo "Creating ${CONTAINER_NAME}:latest from Dockerfile:"
 cat Dockerfile
