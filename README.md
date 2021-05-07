@@ -20,6 +20,11 @@ The following topics will be covered:
 3. Perform CI by building Github Triggers in Cloud Build that will rebuild container upon a push to repository
 4. CD by using Cloud Functions to trigger upon uploading new data to your bucket
 
+<p align="center">
+  <img width="245" alt="gcloud_meme" src="https://user-images.githubusercontent.com/52280124/117477536-661e9900-af5e-11eb-8615-7e2e2f783832.PNG">
+</p>
+
+
 <img src = "https://global-uploads.webflow.com/5d3ec351b1eba4332d213004/5ec509611b60fb7f14e7e7ce_kubeflow-logo.png" align="right" height = 50 width = 60/>
 
 ## 🌉 Setting up the pipeline
@@ -76,7 +81,7 @@ So we will have a Cloud function that will trigger a training pipeline when we u
 
 3. Now, whenever a new file is added or deleted from the project bucket, it will rerun the pipeline.
 
-<img width="245" alt="gcloud_meme" src="https://user-images.githubusercontent.com/52280124/117477536-661e9900-af5e-11eb-8615-7e2e2f783832.PNG">
+
 
 ## 👓 Resources used and further reading
 * [Deploy your own custom model on GCP’s AI platform](https://medium.com/searce/deploy-your-own-custom-model-on-gcps-ai-platform-7e42a5721b43)
