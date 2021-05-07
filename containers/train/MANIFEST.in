@@ -1,0 +1,4 @@
+include config.txt
+include setup.py
+include network.py
+include model_prediction.py

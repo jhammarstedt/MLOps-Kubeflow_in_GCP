@@ -24,8 +24,7 @@ GCS_MODEL_DIR='models'
 REGION='global'
 #REGION='us-central1'
 
-m_name=$(gcloud ai-platform models list \ 
-  --region $REGION | grep -w ${MODEL_NAME})
+m_name=$(gcloud ai-platform models list --region $REGION | grep -w ${MODEL_NAME})
 
 if [-z $m_name]; then
   echo "Creating model"

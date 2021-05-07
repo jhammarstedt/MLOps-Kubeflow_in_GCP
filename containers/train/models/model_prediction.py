@@ -16,17 +16,13 @@ class PyTorchIrisClassifier(object):
     def from_path(cls, model_dir):
         model_file = os.path.join(model_dir,'model.pth')
 
-        CONFIG = configparser.Configparser()
-        CONFIG.read("config.txt")
+        # CONFIG = configparser.ConfigParser()
+        # CONFIG.read("config.txt")
         
-        hidden = int(CONFIG.get("model","Hidden_layers"))
-        N_classes = int(CONFIG.get("model","num_classes"))
-        Inp_features  = int(CONFIG.get("model","input_features"))
-        
-        model = Network(input_features= Inp_features,
-                hidden_units = hidden,
-                num_classes = N_classes)
-
+        # hidden = int(CONFIG.get("model","Hidden_layers"))
+        # N_classes = int(CONFIG.get("model","num_classes"))
+        # inp_features  = int(CONFIG.get("model","input_features"))
+        model = Network()
         model.load_state_dict(torch.load(model_file))
         #model = torch.load(model_file)
         return cls(model)
