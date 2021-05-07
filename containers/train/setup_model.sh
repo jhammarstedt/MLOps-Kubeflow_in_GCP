@@ -1,6 +1,8 @@
 #!/bin/bash
 
-BUCKET=$1
+PROJECT=$(gcloud config get-value project)
+BUCKET="${PROJECT}_bucket"
+
 MODEL_FORMAT='model.pth'
 echo "Running traning model.py"
 
@@ -9,7 +11,7 @@ echo "Saving the ${MODEL_FORMAT} to bucket: models/${MODEL_FORMAT}"
 
 
 LOCAL_MODELPATH="models/model.pth"
-BUCKET_MODELPATH="gs://ml-pipeline-309409_bucket/models/model.pth"
+BUCKET_MODELPATH="gs://${BUCKET}/models/model.pth"
 
 
 gsutil cp $LOCAL_MODELPATH $BUCKET_MODELPATH
@@ -21,7 +23,7 @@ echo "SETTING UP MODEL"
 
 # python models/setup.py sdist
 
-DIST_PACKAGE_BUCKET='gs://ml-pipeline-309409_bucket/models/Test_model-0.1.tar.gz'
+DIST_PACKAGE_BUCKET='gs://${BUCKET}/models/Test_model-0.1.tar.gz'
 LOCAL_PACKAGE='dist/Test_model-0.1.tar.gz'
 
 
