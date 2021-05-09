@@ -37,7 +37,7 @@ Here we will go through the process of running the pipeline step by step:
 
 1. Create a gcp project, open the shell (make sure you're in the project), and clone the repository 
   
-      `$ git clone jhammarstedt/gcloud_MLOPS_demo.git`
+      `$ git clone https://github.com/jhammarstedt/gcloud_MLOPS_demo.git`
 
 2. Create a [kubeflow pipeline](https://console.cloud.google.com/ai-platform/pipelines)
 3. Run the `$ ./scripts/set_auth.sh` script in google cloud shell (might wanna change the SA_NAME), this gives us the roles we need to run the pipeline
