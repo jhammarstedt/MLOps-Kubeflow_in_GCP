@@ -12,7 +12,7 @@ echo "Saving the ${MODEL_FORMAT} to bucket: models/${MODEL_FORMAT}"
 
 LOCAL_MODELPATH="models/model.pth"
 BUCKET_MODELPATH="gs://${BUCKET}/models/model.pth"
-
+echo "1"
 
 gsutil cp $LOCAL_MODELPATH $BUCKET_MODELPATH
 rm -r $LOCAL_MODELPATH
