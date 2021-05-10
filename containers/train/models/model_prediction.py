@@ -8,7 +8,8 @@ from torch import nn
 class PyTorchIrisClassifier(object):
     def __init__(self, model):
         self._model = model
-        self.class_vocab = ['setosa', 'versicolor', 'virginica']
+        #self.class_vocab = ['setosa', 'versicolor', 'virginica']
+        self.class_vocab = ['cesar', 'deepika', 'khashayar']
     
     @classmethod
     def from_path(cls, model_dir):
