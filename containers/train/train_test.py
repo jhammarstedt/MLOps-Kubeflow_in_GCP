@@ -98,7 +98,7 @@ if __name__=='__main__':
     args = parser.parse_args()
     print('read data from data bucket')
     #data = AnyDataset("gs://ml-pipeline-309409_bucket/data/iris.data")
-    data = AnyDataset("gs://ml-pipeline-309409-data-bucket/iris.data")
+    data = AnyDataset("gs://ml-pipeline-309409_bucket/data/iris.data")
     device = 'cpu'
 
     MODEL_SAVE_PATH = 'models/model.pth'
