@@ -27,7 +27,7 @@ def preprocess(PROJECT, BUCKET):
     my_bucket = storage_client.get_bucket("${PROJECT}_bucket")
     
     print("loading data from data bucket")
-    data = pd.read_csv("gs://${PROJECT}-data-bucket/data/iris.data",delimiter=',')
+    data = pd.read_csv("gs://${PROJECT}-data-bucket/iris.data",delimiter=',')
     print(buckets)
     
     print('preprocessing data')
