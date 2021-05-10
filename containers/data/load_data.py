@@ -18,17 +18,17 @@ from google.cloud import storage
 
 def preprocess(PROJECT, BUCKET):
     
-    OUTPUT_DIR = 'gs://{0}/data/'.format(BUCKET)
+    OUTPUT_DIR = 'gs://{}/data/'.format(BUCKET)
 
     storage_client = storage.Client(project=PROJECT)
 
     buckets = storage_client.list_buckets()
     # blob = bucket.blob('/mnist/')
     #my_bucket = storage_client.get_bucket("${PROJECT}_bucket")
-    my_bucket = storage_client.get_bucket('ml-pipeline-309409_bucket')
+    my_bucket = storage_client.get_bucket(BUCKET)
     
     print("loading data from data bucket")
-    data = pd.read_csv("gs://${PROJECT}-data-bucket/data/iris.data",delimiter=',')
+    data = pd.read_csv("gs://{}-data-bucket/data/iris.data".format(PROJECT),delimiter=',')
     print(buckets)
     
     print('preprocessing data')
