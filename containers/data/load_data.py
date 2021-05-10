@@ -24,10 +24,11 @@ def preprocess(PROJECT, BUCKET):
 
     buckets = storage_client.list_buckets()
     # blob = bucket.blob('/mnist/')
-    my_bucket = storage_client.get_bucket("${PROJECT}_bucket")
+    #my_bucket = storage_client.get_bucket("${PROJECT}_bucket")
+    my_bucket = storage_client.get_bucket('ml-pipeline-309409_bucket')
     
     print("loading data from data bucket")
-    data = pd.read_csv("gs://${PROJECT}-data-bucket/iris.data",delimiter=',')
+    data = pd.read_csv("gs://${PROJECT}-data-bucket/data/iris.data",delimiter=',')
     print(buckets)
     
     print('preprocessing data')
