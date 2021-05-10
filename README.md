@@ -4,7 +4,6 @@
 
 <img src ="https://www.docker.com/sites/default/files/d8/styles/role_icon/public/2019-07/Moby-logo.png?itok=sYH_JEaJ" align = "right" height = 50 width = 70 />
 
-**(WIP)**
 
 This repo will demonstrate how to take the first step towards MLOps by setting up and deploying a ML CI/CD pipeline using Google Clouds AI Platform, Kubeflow and Docker.
 
