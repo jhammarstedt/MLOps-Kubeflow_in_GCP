@@ -7,12 +7,9 @@
 
 This repo will demonstrate how to take the first step towards MLOps by setting up and deploying a ML CI/CD pipeline using Google Clouds AI Platform, Kubeflow and Docker.
 
-
-This demo was created as a part of an assignment for a DevOps course given at KTH spring 2021 and a video demo will also be added shortly.
 ## ✍ Authors
 * Johan Hammarstedt, [jhammarstedt](https://github.com/jhammarstedt)
 * Matej Sestak, [Sestys](https://github.com/sestys)
-
 
 ## 🗺 Overview
 The following topics will be covered:
@@ -30,6 +27,11 @@ The following topics will be covered:
 
 
 <img src = "https://global-uploads.webflow.com/5d3ec351b1eba4332d213004/5ec509611b60fb7f14e7e7ce_kubeflow-logo.png" align="right" height = 50 width = 60/>
+
+## 📽 Video Demo
+There's a short video demo of the project available [here](https://www.youtube.com/watch?v=1DQxoU1s8dw). 
+
+Note that it was created for a DevOps course at KTH with a 3 minute limit and is therefore very breif and compressed to fit these requirements. 
 
 ## 🌉 Setting up the pipeline
 Here we will go through the process of running the pipeline step by step:
