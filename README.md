@@ -35,6 +35,7 @@ Note that it was created for a DevOps course at KTH with a 3 minute limit and is
 
 ## 🌉 Setting up the pipeline
 Here we will go through the process of running the pipeline step by step:
+(Note at the moment there are some hard coded project names/repos etc that you might want to change, this will be updated here eventually)
 
 1. Create a gcp project, open the shell (make sure you're in the project), and clone the repository 
   
@@ -42,7 +43,11 @@ Here we will go through the process of running the pipeline step by step:
 
 2. Create a [kubeflow pipeline](https://console.cloud.google.com/ai-platform/pipelines)
 3. Run the `$ ./scripts/set_auth.sh` script in google cloud shell (might wanna change the SA_NAME), this gives us the roles we need to run the pipeline
-4. Create a docker container for each step (each of the folders in the containers repo representes a different step)
+4. Create a project bucket and a data bucket (used for CD later), here we named just it {PROJECT_NAME}_bucket and {PROJECT_NAME}-data-bucket
+  - In the general project bucket add following subfolders: models, packages,data
+5. Locally, create a package from the `models` directory in the containers/train folder by running:
+`$ python containers/train/models/setup.py sdist` , this creates a package with pytorch and the model structure, just drag and drop it to the package subfolder.
+5. Create a docker container for each step (each of the folders in the containers repo representes a different step)
        * Do this by running: ```$ gcloud_MLOPS_demo/containers ./build_containers.sh``` from the cloud shell.
 
     This will run "build_single_container.sh in each directory"
@@ -50,7 +55,7 @@ Here we will go through the process of running the pipeline step by step:
       
       `$ bash ../build_single_container.sh {directory name}`
 
-5. Each subfolder (which will be a container) includes:
+6. Each subfolder (which will be a container) includes:
     <details>
      
      * A cloudbuild.yaml file (created in build_single_repo.sh) which will let Cloud Build create a docker container by running the included Dockerfile. 
@@ -59,7 +64,8 @@ Here we will go through the process of running the pipeline step by step:
 
     * A task script that tells the Docker container what to do (e.g preproc/train/deploy the trained model to the AI-platform)
     </details>
-6. To test the container manually run
+
+7. To test the container manually run
 
     `$ docker run -t gcr.io/{YOUR_PROJECT}/{IMAGE}:latest --project {YOUR_PROJECT} --bucket {YOUR_BUCKET} local`
 
@@ -67,8 +73,8 @@ Here we will go through the process of running the pipeline step by step:
 
     `$ docker run -t gcr.io/ml-pipeline-309409/ml-demo-deploy-toai `
 
-7. Create a pipeline in python using the kubeflow API (currently a notebook in AI platform)
-8. Now we can either run the pipeline manually at the pipeline dashbord from 1. or run it as a script.
+8. Create a pipeline in python using the kubeflow API (currently a notebook in AI platform)
+9. Now we can either run the pipeline manually at the pipeline dashbord from 1. or run it as a script.
 
 ## 🛠 CI
 To set up CI and rebuild at every push:
